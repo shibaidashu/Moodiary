@@ -1,6 +1,5 @@
 package com.example.demo.friendship.Controller;
 
-
 import com.example.demo.friendship.Service.FriendshipService;
 import com.example.demo.user.Service.UserService;
 import com.example.demo.common.Utils.Result;
