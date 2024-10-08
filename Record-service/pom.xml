@@ -10,12 +10,17 @@
     </parent>
 
     <groupId>iss.team</groupId>
-    <artifactId>Friendship-service</artifactId>
+    <artifactId>Record-service</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>iss.team</groupId>
             <artifactId>Md-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>iss.team</groupId>
+            <artifactId>User-service</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>

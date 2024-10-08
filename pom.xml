@@ -25,6 +25,7 @@
         <module>User-service</module>
         <module>Md-common</module>
         <module>Friendship-service</module>
+        <module>Record-service</module>
     </modules>
     <scm>
         <connection/>
