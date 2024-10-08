@@ -10,28 +10,25 @@
     </parent>
 
     <groupId>iss.team</groupId>
-    <artifactId>Md-common</artifactId>
+    <artifactId>Friendship-service</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.example.demo.common</groupId>
+            <artifactId>Md-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>iss.team</groupId>
+            <artifactId>User-service</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>repackage</id>
-                        <phase>none</phase>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
-
 
 </project>

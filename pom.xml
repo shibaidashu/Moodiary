@@ -23,7 +23,6 @@
     </developers>
     <modules>
         <module>User-service</module>
-        <module>User-service</module>
         <module>Md-common</module>
         <module>Friendship-service</module>
     </modules>
