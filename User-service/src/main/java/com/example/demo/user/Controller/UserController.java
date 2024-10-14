@@ -6,8 +6,8 @@ import com.example.demo.common.Entity.User;
 import com.example.demo.common.Utils.JwtUtil;
 import com.example.demo.common.Utils.Result;
 import com.example.demo.user.Service.UserService;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.util.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -21,12 +21,12 @@ import java.util.Objects;
 
 @RestController
 @RequestMapping("/users")
-@Tag(name = "用户相关接口")
+@Api(tags = "用户相关接口")
 public class UserController {
     @Autowired
     private UserService userService;
 
-    @Operation(summary = "增加用户")
+    @ApiOperation("增加用户")
     @PostMapping("/addUser")
     public Result addUser(@ModelAttribute @Validated UserDTO userDTO, @RequestParam MultipartFile avatorPic) throws IOException {
         byte[]avator = avatorPic.getBytes();
@@ -38,7 +38,7 @@ public class UserController {
         return Result.success();
     }
 
-    @Operation(summary = "登录功能")
+    @ApiOperation("登录功能")
     @GetMapping("/login")
     public Result login(@RequestParam String email, @RequestParam String password){
         User user = userService.getUserByEmail(email);
@@ -55,6 +55,13 @@ public class UserController {
             }
         }
         return Result.error("Invalid Account");
+    }
+
+    @ApiOperation("查询用户")
+    @GetMapping("/getUser/{id}")
+    public Result getUser(@PathVariable Integer id){
+        User user = userService.getUser(id);
+        return Result.success(user);
     }
 
 
