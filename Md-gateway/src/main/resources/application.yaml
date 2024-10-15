@@ -1,36 +1,34 @@
 server:
-  port: 8084
-
+  port: 8080
 spring:
   application:
-    name: Post-service
-  cloud:
-    nacos:
-      server-addr: 13.251.129.185:29781 # nacos地址
+    name: Gateway-service
+  main:
+    web-application-type: reactive
   datasource:
     url: jdbc:mysql://localhost:3306/nusteamproject1
     username: root
     password: 1234
-
-mybatis:
-  configuration:
-    map-underscore-to-camel-case: true
-
-knife4j:
-  enable: true
-  openapi:
-    title: 商品服务接口文档
-    description: "信息"
-    email: zhanghuyi@itcast.cn
-    concat: 虎哥
-    url: https://www.itcast.cn
-    version: v1.0.0
-    group:
-      default:
-        group-name: default
-        api-rule: package
-        api-rule-resources:
-          - com.example.demo.post.Controller
-
-
-
+  cloud:
+    nacos:
+      server-addr: 13.251.129.185:31352 # nacos地址
+    gateway:
+      default-filters: # default-filters下的过滤器可以作用于所有路由
+        - AddRequestHeader=key, value
+      routes:
+        - id: user # 路由规则id，自定义，唯一
+          uri: lb://User-service # 路由的目标服务，lb代表负载均衡，会从注册中心拉取服务列表
+          predicates: # 路由断言，判断当前请求是否符合当前规则，符合则路由到目标服务
+            - Path=/users/** # 这里是以请求路径作为判断规则
+        - id: record
+          uri: lb://Record-service
+          predicates:
+            - Path=/Record/**
+        - id: friendship
+          uri: lb://Friendship-service
+          predicates:
+            - Path=/friendship/**
+        - id: post
+          uri: lb://Post-service
+          predicates:
+            - Path=/post/**

@@ -28,6 +28,7 @@
         <module>Record-service</module>
         <module>Post-service</module>
         <module>Md-api</module>
+        <module>Md-gateway</module>
     </modules>
     <scm>
         <connection/>
