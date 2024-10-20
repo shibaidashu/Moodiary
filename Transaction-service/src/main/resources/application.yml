@@ -1,0 +1,39 @@
+server:
+  port: 8087
+
+spring:
+  application:
+    name: Transaction-service
+  cloud:
+    nacos:
+      server-addr: 13.251.129.185:31352 # nacos地址
+  datasource:
+    url: jdbc:mysql://localhost:3306/nusteamproject1
+    username: root
+    password: 1234
+  rabbitmq:
+    host: 13.251.129.185
+    port: 31681
+    virtual-host: md
+    username: md
+    password: 123
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
+knife4j:
+  enable: true
+  openapi:
+    title: 积分记录接口文档
+    description: "积分记录接口文档"
+    concat: ISS-7
+    version: v1.0.0
+    group:
+      default:
+        group-name: ISS-7
+        api-rule: package
+        api-rule-resources:
+          - com.example.demo.transaction.Controller
+
+

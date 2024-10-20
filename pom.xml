@@ -29,6 +29,9 @@
         <module>Post-service</module>
         <module>Md-api</module>
         <module>Md-gateway</module>
+        <module>PayOrder-Service</module>
+        <module>Address-service</module>
+        <module>Transaction-service</module>
     </modules>
     <scm>
         <connection/>
@@ -172,6 +175,12 @@
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
             <version>5.8.11</version>
+        </dependency>
+
+        <!--amqp-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
     </dependencies>
 

@@ -32,3 +32,15 @@ spring:
           uri: lb://Post-service
           predicates:
             - Path=/post/**
+        - id: address
+          uri: lb://Address-service
+          predicates:
+            - Path=/Address/**
+        - id: payOrder
+          uri: lb://PayOrder-service
+          predicates:
+            - Path=/pay/**
+        - id: transaction
+          uri: lb://Transaction-service
+          predicates:
+            - Path=/transaction/**
