@@ -4,6 +4,7 @@ import com.example.demo.common.DTO.IntensityDTO;
 import com.example.demo.common.DTO.MoodHistoryDTO;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Update;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -17,5 +18,6 @@ public interface RecordMapper {
 
     List<MoodHistoryDTO>getMoodHistory(int type, int userId);
 
-    List<IntensityDTO>getIntensity(int type, int userId);
+    @Update("UPDATE record SET Mood = #{jsonData} WHERE recordId = #{recordId}")
+    void setIntensity(String jsonData,int recordId);
 }

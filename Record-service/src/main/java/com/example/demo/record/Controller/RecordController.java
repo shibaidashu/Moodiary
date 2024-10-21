@@ -1,6 +1,7 @@
 package com.example.demo.record.Controller;
 
 
+import cn.hutool.core.convert.Convert;
 import com.example.demo.common.DTO.MoodHistoryDTO;
 import com.example.demo.common.Utils.Result;
 import com.example.demo.common.Utils.ThreadLocalUtil;
@@ -27,7 +28,7 @@ public class RecordController {
     @PostMapping("/add")
     public Result addRecord(@Validated @RequestBody Record record) {
         Map<String, Object> claims = ThreadLocalUtil.get();
-        int userId = (int)claims.get("id");
+        Integer userId = Convert.toInt(claims.get("id"));
         record.setUserId(userId);
         recordService.addRecord(record);
         return Result.success();
@@ -39,17 +40,8 @@ public class RecordController {
     public Result getMoodHistory(@RequestParam int queryPeriod){
 //        1：当天；2：本周；3：本月。
         Map<String, Object> claims = ThreadLocalUtil.get();
-        int userId = (int)claims.get("id");
+        Integer userId = Convert.toInt(claims.get("id"));
         List<MoodHistoryDTO> result = recordService.getMoodHistory(queryPeriod,userId);
         return Result.success(result);
-    }
-
-    @ApiOperation("心情活跃度统计")
-    @GetMapping("/Intensity/")
-    public Result getIntensity(@RequestParam int queryPeriod){
-//        1: 本周；2：本月
-        Map<String, Object> claims = ThreadLocalUtil.get();
-        int userId = (int)claims.get("id");
-        return Result.success(recordService.getIntensity(queryPeriod,userId));
     }
 }
