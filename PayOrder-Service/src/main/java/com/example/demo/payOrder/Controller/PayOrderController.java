@@ -29,7 +29,7 @@ public class PayOrderController {
     @PostMapping("/create")
     public Result createPayOrder(@RequestParam Integer productId, @RequestParam Integer quantity) {
         Map<String, Object> claims = ThreadLocalUtil.get();
-        Integer userId = (Integer) claims.get("id");  // 获取 userId
+        Integer userId = Integer.parseInt(claims.get("id").toString());
         log.info("生成支付单：用户ID={}, 商品ID={}, 商品数量={}", userId, productId, quantity);
         OrderDTO order = payOrderService.createPayOrder(userId, productId,quantity);
         return Result.success(order);

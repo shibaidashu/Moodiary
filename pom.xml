@@ -32,6 +32,7 @@
         <module>PayOrder-Service</module>
         <module>Address-service</module>
         <module>Transaction-service</module>
+        <module>Product-service</module>
     </modules>
     <scm>
         <connection/>

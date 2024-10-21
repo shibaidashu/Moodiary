@@ -4,14 +4,13 @@ package com.example.demo.record.Controller;
 import com.example.demo.common.DTO.MoodHistoryDTO;
 import com.example.demo.common.Utils.Result;
 import com.example.demo.common.Utils.ThreadLocalUtil;
+import com.example.demo.common.Entity.Record;
 import com.example.demo.record.Service.RecordService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -22,6 +21,17 @@ import java.util.Map;
 public class RecordController {
     @Autowired
     RecordService recordService;
+
+
+    @ApiOperation("记录笔记")
+    @PostMapping("/add")
+    public Result addRecord(@Validated @RequestBody Record record) {
+        Map<String, Object> claims = ThreadLocalUtil.get();
+        int userId = (int)claims.get("id");
+        record.setUserId(userId);
+        recordService.addRecord(record);
+        return Result.success();
+    }
 
 
     @ApiOperation("获取心情历史记录")
@@ -42,8 +52,4 @@ public class RecordController {
         int userId = (int)claims.get("id");
         return Result.success(recordService.getIntensity(queryPeriod,userId));
     }
-
-
-
-
 }

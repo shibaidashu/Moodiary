@@ -16,7 +16,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         if (userId != null && !userId.isEmpty()) {
             // 将 userId 存储为 Map 而不是直接作为 String
             Map<String, Object> userInfo = new HashMap<>();
-            userInfo.put("id", Integer.parseInt(userId));  // 假设 userId 是可以转换为 Integer 的
+            userInfo.put("id", userId);  // 假设 userId 是可以转换为 Integer 的
             ThreadLocalUtil.set(userInfo);
         }
         return true;  // 无论是否有用户信息，继续放行
