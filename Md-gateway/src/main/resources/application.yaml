@@ -11,7 +11,7 @@ spring:
     password: 1234
   cloud:
     nacos:
-      server-addr: 13.251.129.185:31352 # nacos地址
+      server-addr: 47.129.197.205:29522 # nacos地址
     gateway:
       default-filters: # default-filters下的过滤器可以作用于所有路由
         - AddRequestHeader=key, value

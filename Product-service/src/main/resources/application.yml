@@ -11,17 +11,22 @@ spring:
     database: 0
   cloud:
     nacos:
-      server-addr: 13.251.129.185:31352 # nacos地址
+      server-addr: 47.129.197.205:29522 # nacos地址
   datasource:
     url: jdbc:mysql://localhost:3306/nusteamproject1
     username: root
     password: 1234
   rabbitmq:
-    host: 13.251.129.185
-    port: 31681
+    host: 47.129.197.205
+    port: 30272
     virtual-host: md
     username: md
     password: 123
+
+logging:
+  level:
+    org:
+      elasticsearch=DEBUG:
 
 mybatis:
   configuration:
