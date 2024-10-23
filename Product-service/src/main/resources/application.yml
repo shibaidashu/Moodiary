@@ -5,19 +5,19 @@ spring:
   application:
     name: Product-service
   redis:
-    host: 47.129.197.205
-    port: 30007
+    host: 122.51.221.6
+    port: 30079
     password: JqA5i2JrtjpHTYDHiEDT
-    database: 0
+    database: 10
   cloud:
     nacos:
-      server-addr: 47.129.197.205:29522 # nacos地址
+      server-addr: 122.51.221.6:29887 # nacos地址
   datasource:
     url: jdbc:mysql://localhost:3306/nusteamproject1
     username: root
     password: 1234
   rabbitmq:
-    host: 47.129.197.205
+    host: 122.51.221.6
     port: 30272
     virtual-host: md
     username: md

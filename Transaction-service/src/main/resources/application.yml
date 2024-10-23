@@ -2,17 +2,23 @@ server:
   port: 8087
 
 spring:
+  main:
+    allow-circular-references: true
   application:
     name: Transaction-service
   cloud:
     nacos:
-      server-addr: 47.129.197.205:29522 # nacos地址
+      server-addr: 122.51.221.6:29887 # nacos地址
+#    sentinel:
+#      transport:
+#        dashboard: localhost:8090
+#      eager: true
   datasource:
     url: jdbc:mysql://localhost:3306/nusteamproject1
     username: root
     password: 1234
   rabbitmq:
-    host: 47.129.197.205
+    host: 122.51.221.6
     port: 30272
     virtual-host: md
     username: md

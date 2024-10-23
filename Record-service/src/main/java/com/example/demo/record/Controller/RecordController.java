@@ -28,12 +28,12 @@ public class RecordController {
     @PostMapping("/add")
     public Result addRecord(@Validated @RequestBody Record record) {
         Map<String, Object> claims = ThreadLocalUtil.get();
-        Integer userId = Convert.toInt(claims.get("id"));
+        Integer userId = Integer.parseInt(claims.get("id").toString());
         record.setUserId(userId);
         recordService.addRecord(record);
+        recordService.addPoints(userId);
         return Result.success();
     }
-
 
     @ApiOperation("获取心情历史记录")
     @GetMapping("/History")

@@ -3,12 +3,15 @@ package com.example.demo.post.Controller;
 import com.example.demo.common.Entity.PageBean;
 import com.example.demo.common.Entity.Post;
 import com.example.demo.common.Utils.Result;
+import com.example.demo.common.Utils.ThreadLocalUtil;
 import com.example.demo.post.Service.PostService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @Slf4j
 @RestController
@@ -24,6 +27,9 @@ public class PostController {
     @PostMapping("/release")
     public Result addPost(@RequestBody Post post) {
         log.info("发布朋友圈内容：{}", post);
+        Map<String, Object> claims = ThreadLocalUtil.get();
+        Integer userId = Integer.parseInt(claims.get("id").toString());
+        post.setUserId(userId);
         postService.addPost(post);
         return Result.success();
     }

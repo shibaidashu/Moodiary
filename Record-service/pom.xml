@@ -26,6 +26,13 @@
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
             <version>2021.0.4.0</version>
         </dependency>
+
+        <!-- 项目内部 API 模块依赖，用于复用 Md-api 模块中的 API 相关功能 -->
+        <dependency>
+            <groupId>iss.team</groupId>
+            <artifactId>Md-api</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 

@@ -22,27 +22,12 @@ public class TransactionController {
     @Autowired
     private TransactionService transactionService;
 
-    // 创建积分交易记录
-    @ApiOperation("创建积分交易记录")
-    @PostMapping("/create")
-    public Result createTransaction(
-            @RequestParam Integer changeAmount,
-            @RequestParam String transactionType,
-            @RequestParam String description) {
-        Map<String, Object> claims = ThreadLocalUtil.get();
-        int userId = (int)claims.get("id");
-        log.info("创建交易记录：userId={}, changeAmount={}, transactionType={}", userId, changeAmount, transactionType);
-        transactionService.createTransaction(userId, changeAmount, transactionType, description);
-        return Result.success();
-    }
-
-
     @ApiOperation("获取积分交易记录")
     @GetMapping("/history")
     public Result getTransactionHistory(@RequestParam(defaultValue = "1") Integer page,
                                         @RequestParam(defaultValue = "10") Integer pageSize){
-        Map<String, Object>claims = ThreadLocalUtil.get();
-        int userId = (int)claims.get("id");
+        Map<String, Object> claims = ThreadLocalUtil.get();
+        Integer userId = Integer.parseInt(claims.get("id").toString());
         PageBean pageBean = transactionService.page(userId,page, pageSize);
         //响应
         return Result.success(pageBean);

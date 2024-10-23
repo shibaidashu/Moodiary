@@ -35,11 +35,13 @@ public class UserController {
         }
         String encryptedPassword = DigestUtils.md5DigestAsHex(userDTO.getPassword().getBytes());
         userService.addUser(userDTO.getUsername(), encryptedPassword, userDTO.getEmail(), userDTO.getGender(), userDTO.getStatus(), avator);
+        int userId = userService.getUserByEmail(userDTO.getEmail()).getUserId();
+        userService.initiateScore(userId);
         return Result.success();
     }
 
     @ApiOperation("登录功能")
-    @GetMapping("/login")
+    @PostMapping("/login")
     public Result login(@RequestParam String email, @RequestParam String password){
         User user = userService.getUserByEmail(email);
         if(user!=null){
@@ -63,16 +65,4 @@ public class UserController {
         User user = userService.getUser(id);
         return Result.success(user);
     }
-
-
-
-
-
-//    @PostMapping("/changePassword")
-//    public Result changePassword(@RequestParam int Email,
-//                                 @RequestParam String oldPassword,
-//                                 @RequestParam String newPassword){
-//
-//    }
-
 }

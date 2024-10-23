@@ -6,7 +6,7 @@ spring:
     name: Post-service
   cloud:
     nacos:
-      server-addr: 47.129.197.205:29522 # nacos地址
+      server-addr: 122.51.221.6:29887 # nacos地址
   datasource:
     url: jdbc:mysql://localhost:3306/nusteamproject1
     username: root

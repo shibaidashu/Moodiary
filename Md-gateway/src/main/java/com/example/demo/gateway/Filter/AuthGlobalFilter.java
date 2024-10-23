@@ -17,7 +17,7 @@ import java.util.Map;
 public class AuthGlobalFilter implements GlobalFilter, Ordered {
 
     // 登录、注册等不需要 token 验证的接口路径白名单
-    private static final List<String> whiteListedPaths = List.of("/users/login", "/users/register");
+    private static final List<String> whiteListedPaths = List.of("/users/login", "/users/addUser");
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
@@ -31,7 +31,7 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
 
         // 获取 token
         String token = null;
-        List<String> headers = request.getHeaders().get("user-info");
+        List<String> headers = request.getHeaders().get("Authorization");
         if (headers != null && !headers.isEmpty()) {
             token = headers.get(0);
         }

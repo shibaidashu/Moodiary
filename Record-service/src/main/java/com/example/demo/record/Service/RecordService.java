@@ -10,4 +10,6 @@ public interface RecordService {
     public List<MoodHistoryDTO> getMoodHistory(int type,int userId);
 
     public void addRecord(Record record);
+
+    public void addPoints(int userId);
 }

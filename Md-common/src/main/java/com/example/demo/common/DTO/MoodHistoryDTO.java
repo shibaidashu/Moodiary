@@ -1,5 +1,6 @@
 package com.example.demo.common.DTO;
 
+import cn.hutool.json.JSON;
 import lombok.Data;
 
 import java.sql.Timestamp;
@@ -8,7 +9,5 @@ import java.sql.Timestamp;
 public class MoodHistoryDTO {
     int userId;
     int recordId;
-    int mood;
-    Timestamp createdAt;
-
+    String mood;
 }

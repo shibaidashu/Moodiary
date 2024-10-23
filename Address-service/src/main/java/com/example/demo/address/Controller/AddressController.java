@@ -25,7 +25,7 @@ public class AddressController {
     @PostMapping("/addAddress")
     public Result addAddress(@RequestBody Address address) {
         Map<String, Object> claims = ThreadLocalUtil.get();
-        int userId = (int)claims.get("id");
+        Integer userId = Integer.parseInt(claims.get("id").toString());
         address.setUserId(userId);
         int addressId = addressService.addAddress(address);
         if(addressId>0){
@@ -50,7 +50,7 @@ public class AddressController {
     public Result deleteAddress(@RequestParam int addressId) {
         Address address = addressService.getAddressById(addressId);
         Map<String, Object> claims = ThreadLocalUtil.get();
-        int userId = (int)claims.get("id");
+        Integer userId = Integer.parseInt(claims.get("id").toString());
         if(address!=null){
             if(address.getUserId()!=userId){
                 return Result.error("Not Related Account");
@@ -63,10 +63,10 @@ public class AddressController {
 
 
     @ApiOperation("获取当前用户的所有地址")
-    @GetMapping("/adresses")
+    @GetMapping("/addresses")
     public Result getAddressByUserId(){
         Map<String, Object> claims = ThreadLocalUtil.get();
-        int userId = (int)claims.get("id");
+        Integer userId = Integer.parseInt(claims.get("id").toString());
         List<Address>addresses = addressService.getAddressByUserId(userId);
         return Result.success(addresses);
     }

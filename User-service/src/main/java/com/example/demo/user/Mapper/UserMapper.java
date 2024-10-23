@@ -1,5 +1,6 @@
 package com.example.demo.user.Mapper;
 
+import com.example.demo.common.DTO.PointDTO;
 import com.example.demo.common.Entity.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -14,7 +15,13 @@ public interface UserMapper{
     @Select("SELECT * FROM tb_user WHERE userId = #{userId}")
     User getUserById(int userId);
 
-
     @Select("SELECT * FROM tb_user WHERE email = #{email}")
     User getUserByEmail(String email);
+
+    @Insert("INSERT INTO points(userId, pointsBalance) VALUES (#{userId},800)")
+    void initiatePoints(int userId);
+
+    // 根据用户ID查询用户积分DTO
+    @Select("select * from points where userId = #{userId}")
+    PointDTO selectPointDTOByUserId(int userId);
 }
