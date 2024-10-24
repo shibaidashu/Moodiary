@@ -3,6 +3,7 @@ package com.example.demo.record.Mapper;
 import com.example.demo.common.DTO.IntensityDTO;
 import com.example.demo.common.DTO.MoodHistoryDTO;
 import com.example.demo.common.DTO.PointDTO;
+import com.example.demo.common.DTO.RecordIntensityDTO;
 import com.example.demo.common.Entity.Record;
 import org.apache.ibatis.annotations.*;
 
@@ -21,6 +22,8 @@ public interface RecordMapper {
 
     @Update("UPDATE record SET Mood = #{jsonData}, TopEmotion = #{topEmotion}, Comfort = #{comfortLanguage}, Guidance = #{behavioralGuidance} WHERE recordId = #{recordId}")
     void setIntensity(String jsonData, String topEmotion,String comfortLanguage,String behavioralGuidance,int recordId);
+
+    List<RecordIntensityDTO>getRecordIntensity(int type, int userId);
 
     // 根据用户ID查询用户积分DTO
     @Select("select * from points where userId = #{userId}")

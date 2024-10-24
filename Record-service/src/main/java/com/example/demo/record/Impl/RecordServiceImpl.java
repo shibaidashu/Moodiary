@@ -1,10 +1,7 @@
 package com.example.demo.record.Impl;
 
 import cn.hutool.json.JSONUtil;
-import com.example.demo.common.DTO.IntensityDTO;
-import com.example.demo.common.DTO.MoodHistoryDTO;
-import com.example.demo.common.DTO.PointDTO;
-import com.example.demo.common.DTO.PointsTransactionDTO;
+import com.example.demo.common.DTO.*;
 import com.example.demo.common.Entity.Record;
 import com.example.demo.record.Mapper.RecordMapper;
 import com.example.demo.record.Service.RecordService;
@@ -63,6 +60,11 @@ public class RecordServiceImpl implements RecordService{
         recordMapper.addRecord(record);
         // 发送消息到 RabbitMQ
         rabbitTemplate.convertAndSend(EXCHANGE, ROUTING_KEY1, record);
+    }
+
+    @Override
+    public List<RecordIntensityDTO> getRecordIntensity(int type, int userId) {
+        return recordMapper.getRecordIntensity(type,userId);
     }
 
     @Override

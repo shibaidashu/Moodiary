@@ -2,11 +2,17 @@ server:
   port: 8083
 
 spring:
+  main:
+    allow-circular-references: true
   application:
     name: Record-service
   cloud:
     nacos:
       server-addr: 122.51.221.6:29887 # nacos地址
+    sentinel:
+      transport:
+        dashboard: 122.51.221.6:8090
+      eager: true
   datasource:
     url: jdbc:mysql://localhost:3306/nusteamproject1
     username: root

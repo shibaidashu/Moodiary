@@ -4,6 +4,7 @@ spring:
   application:
     name: Gateway-service
   main:
+    allow-circular-references: true
     web-application-type: reactive
   datasource:
     url: jdbc:mysql://localhost:3306/nusteamproject1
@@ -12,6 +13,10 @@ spring:
   cloud:
     nacos:
       server-addr: 122.51.221.6:29887 # nacos地址
+    sentinel:
+      transport:
+        dashboard: 122.51.221.6:8090
+      eager: true
     gateway:
       default-filters: # default-filters下的过滤器可以作用于所有路由
         - AddRequestHeader=key, value

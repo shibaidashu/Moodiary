@@ -25,7 +25,7 @@ public class PostController {
     //发布朋友圈内容
     @ApiOperation("发布朋友圈内容")
     @PostMapping("/release")
-    public Result addPost(@RequestBody Post post) {
+    public Result addPost(@ModelAttribute Post post) {
         log.info("发布朋友圈内容：{}", post);
         Map<String, Object> claims = ThreadLocalUtil.get();
         Integer userId = Integer.parseInt(claims.get("id").toString());

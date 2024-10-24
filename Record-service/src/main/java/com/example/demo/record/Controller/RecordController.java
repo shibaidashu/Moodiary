@@ -26,7 +26,7 @@ public class RecordController {
 
     @ApiOperation("记录笔记")
     @PostMapping("/add")
-    public Result addRecord(@Validated @RequestBody Record record) {
+    public Result addRecord(@Validated @ModelAttribute Record record) {
         Map<String, Object> claims = ThreadLocalUtil.get();
         Integer userId = Integer.parseInt(claims.get("id").toString());
         record.setUserId(userId);
@@ -43,5 +43,14 @@ public class RecordController {
         Integer userId = Convert.toInt(claims.get("id"));
         List<MoodHistoryDTO> result = recordService.getMoodHistory(queryPeriod,userId);
         return Result.success(result);
+    }
+
+    @ApiOperation("心情活跃度统计")
+    @GetMapping("/Intensity")
+    public Result getIntensity(@RequestParam int queryPeriod){
+//        1: 本周；2：本月
+        Map<String, Object> claims = ThreadLocalUtil.get();
+        int userId = (int)claims.get("id");
+        return Result.success(recordService.getRecordIntensity(queryPeriod,userId));
     }
 }
